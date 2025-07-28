@@ -1,19 +1,34 @@
-
 # BOPPSSP
+
 Datasets from Hongbo Li, Zhijie Yuan, Manman Yang, Zhaoying Yuan and Xianchao Zhang, (2025, working paper), Project portfolio selection and scheduling considering net present value and delayed delivery.
 
-Datasets test project data sets:
-Data sets used for calculation experiments.
-J1: 80 instances with 30 projects each.
-J2: 80 instances with 60 projects each.
-J3: 80 instances with 90 projects each.
-J4: 80 instances with 120 projects each.
-All file data in folders J1 to J4 are expressed as follows:
-The first line respectively indicates: Num. of candidate projects, Num. of resource types, Planning horizon, Initial capital and Max. num. of selected projects.
-The second line respectively indicates: Availability of each resource.
-The third line indicates: set of projects interactions I_l (|I_l|=3,4,…,m/2) in this instance. The data is expressed as 10 groups of 3-project interactions, 10 groups of 4-project interactions ... 10 groups of m/2-project interactions.
-The fourth line indicates: Interaction cash flows of set of projects interactions I_l (|I_l |=3,4,…,m/2) in this instance.
-From the fifth line to the last line, there are a total of N lines (N = Num. of candidate projects). Each line respectively indicates: Project duration, Resource availability, Cash inflow, Cash outflow, Planned delivery date, Latest completion time, Unit cost of project delay and the cash flow of pairs of projects interactions between this project and each project (|I_l|=2).
+## project data:
 
-Cplex:
-Files used for cplex scheduling.
+Data sets used for computational experiments.
+
+- **J1**: 80 instances, each with 30 candidate projects (where $N=30$ for J1). 
+- **J2:** 80 instances, each with 60 candidate projects (where $N=60$ for J2). 
+- **J3:** 80 instances, each with 90 candidate projects (where $N=90$ for J3). 
+- **J4:** 80 instances, each with 120 candidate projects (where $N=120$ for J4). 
+
+Each file in J1-J4 folder represents an instance, and all RCP files share the same format. 
+
+**Data structure:**
+
+**Line 1:** The first number indicates the Number of candidate projects, the second number indicates the Number of resource types, the third number indicates the Planning horizon, the fourth number indicates the Initial capital, and the fifth number indicates the Maximum number of selected projects.
+
+**Line 2:** The first number indicates the Availability of the first resource type, the second number indicates the Availability of the second resource type, and so on.
+
+**Line 3:** Represents all set of projects interactions sets $I_l \quad(|I_l|=3,4,\cdots,\frac{m}{2})$. The $1^{st}$ to $3^{rd}$ numbers represent the first group of three-project interactions, the $4^{th}$ to $6^{th}$ numbers represent the second group of three-project interactions, and so on, with a total of ten groups of three-project interactions. Then there are ten groups of four-project interactions, up to ten groups of $\frac{m}{2}$-project interactions.
+
+**Line 4:** Represents all Interaction cash flows for set of projects interactions $I_l$. The $1^{st}$ to $10^{th}$ numbers indicate the cash flows for the ten groups of three-project interactions, the $11^{th}$ to $20^{th}$ numbers indicate the cash flows for the ten groups of four-project interactions, and so on. The $(5m-11)^{th}$ to $(5m-20)^{th}$ numbers indicate the cash flows for the ten groups of $\frac{m}{2}$-project interactions.
+
+**Lines 5 to $N$:** In each line, the first number indicates the Duration, the $2^{nd}$ to $(r+1)^{th}$ numbers (where $r$ is the number of resource types in this instance) indicate the Resource availability, the $(r+2)^{th}$ number indicates the Cash inflow, the $(r+3)^{th}$ number indicates the Cash outflow, the $(r+4)^{th}$ number indicates the Planned delivery date, the $(r+5)^{th}$ number indicates the Latest completion time, the $(r+6)^{th}$ number indicates the Unit cost of delay, and the $(r+7)^{th}$ to $(r+N+6)^{th}$ numbers represent the pairs of projects interactions cash flows between this project and the $1^{st}$ to $N^{th}$ projects.
+
+## CPLEX Code:
+
+Python files for solving problems using CPLEX. 
+
+- `Cplex.py`: Contains the CPLEX scheduling function and the program's main function.  
+- `Method.py`: Supporting functions called by `Cplex.py`, including discount rate assignment, project class definitions, dataset reading, and individual evaluation functions.
+
