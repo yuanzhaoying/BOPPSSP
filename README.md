@@ -1,6 +1,5 @@
 # BOPPSSP
 
-Datasets from Hongbo Li, Zhijie Yuan, Manman Yang, Zhaoying Yuan and Xianchao Zhang, (2025, working paper), Project portfolio selection and scheduling considering net present value and delayed delivery.
 
 ## project data:
 
@@ -31,4 +30,5 @@ Python files for solving problems using CPLEX.
 
 - `Cplex.py`: Contains the CPLEX scheduling function and the program's main function.  
 - `Method.py`: Supporting functions called by `Cplex.py`, including discount rate assignment, project class definitions, dataset reading, and individual evaluation functions.
+
 
